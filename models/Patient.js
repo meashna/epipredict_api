@@ -10,7 +10,7 @@ const PatientSchema = new mongoose.Schema({
   contactInfo: { type: String }, // Optional
   createdAt: { type: Date, default: Date.now },
 
-  // Array of references to consultations
+  // Array of references to consultationsss
   consultations: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Consultation' }] // Array of Consultation ObjectIds
 });
 
