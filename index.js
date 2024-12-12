@@ -18,7 +18,7 @@ app.get('/', (req, res) => {
   res.send('Server is running!');
 });
 
-// Routes
+// Routes here
 app.use('/', authRoutes);  // Use the auth routes for handling requests
 app.use('/patients', patientRoutes);
 app.use('/consultations', consultationRoutes);

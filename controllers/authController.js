@@ -28,6 +28,7 @@ exports.login = async (req, res) => {
     const user = await User.findOne({ username });
     if (!user) {
       return res.status(400).json({ error: 'User not found' });
+      console.log(user);
     }
 
     if (user.password !== password) {
@@ -38,6 +39,7 @@ exports.login = async (req, res) => {
     res.json({ token, userId: user._id });
   } catch (err) {
     res.status(500).json({ error: 'Server error' });
+    console.log(err);
   }
 };
 
