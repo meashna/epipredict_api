@@ -51,16 +51,32 @@ exports.getPatientById = async (req, res) => {
 
 // Get all patients (without filtering by doctor)
 // Get all patients (without filtering by doctor)
+// exports.getAllPatients = async (req, res) => {
+//   try {
+//     const patients = await Patient.find();  // Fetch all patients
+//     console.log(patients);  // Log the result for debugging
+//     res.status(200).json(patients);  // Send patients as JSON response
+//   } catch (err) {
+//     console.error('Errors fetching patients:', err);  // Log the full error
+//     res.status(500).json({ error: 'Errors retrieving patients', details: err.message });  // Send detailed error message
+//   }
+// };
 exports.getAllPatients = async (req, res) => {
   try {
-    const patients = await Patient.find();  // Fetch all patients
-    console.log(patients);  // Log the result for debugging
-    res.status(200).json(patients);  // Send patients as JSON response
+    // Sort by createdAt in descending order so newest records come first
+    const patients = await Patient.find().sort({ createdAt: -1 });
+
+    console.log(patients);
+    res.status(200).json(patients);
   } catch (err) {
-    console.error('Errors fetching patients:', err);  // Log the full error
-    res.status(500).json({ error: 'Errors retrieving patients', details: err.message });  // Send detailed error message
+    console.error('Errors fetching patients:', err);
+    res.status(500).json({
+      error: 'Errors retrieving patients',
+      details: err.message,
+    });
   }
 };
+
 
 //get consulation by patient id 
 exports.getPatientConsulations = async (req, res) => {
